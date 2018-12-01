@@ -1,0 +1,19 @@
+{
+  "name": "miss-u",
+  "version": "0.0.1",
+  "description": "gift animations using webcam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "author": "Allen Joseph",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.10.3",
+    "sass": "^1.15.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}
