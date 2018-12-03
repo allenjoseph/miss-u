@@ -1,78 +1,156 @@
 body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Open Sans', sans-serif;
-    background: #f2f2f2
-        linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+  background: #f2f2f2
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(242, 242, 242, 1) 100%
+    );
 }
 
 .device {
-    width: 320px;
-    height: 568px;
-    overflow: hidden;
+  width: 320px;
+  height: 568px;
+  overflow: hidden;
 
-    border-radius: 5px;
-    box-shadow:
-        0 0.3em 0.5em -0.2em rgba(100,100,100,1),
-        0 1em 2em -0.75em rgba(100,100,100,0.75),
-        0 1em 3em -0.5em rgba(100,100,100,0.5),
-        0 3em 3em -0.25em rgba(100,100,100,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0.3em 0.5em -0.2em rgba(100, 100, 100, 1),
+    0 1em 2em -0.75em rgba(100, 100, 100, 0.75),
+    0 1em 3em -0.5em rgba(100, 100, 100, 0.5),
+    0 3em 3em -0.25em rgba(100, 100, 100, 0.2);
 
-    display: grid;
-    grid-template-columns: 1fr 80px 1fr;
-    grid-template-rows: 80px auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  grid-template-rows: 80px auto 80px;
 
-    .item {
-        &.hour {
-            grid-column: 3 / 4;
-            grid-row: 1 / 2;
-            justify-self: end;
-        }
-        &.camera {
-            grid-column: 1 / 4;
-            grid-row: 1 / 4;
-            z-index: -1;
-            background: #000;
-            overflow: hidden;
-
-            canvas {
-                display: none;
-            }
-            video {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) rotateY(180deg);
-            }
-        }
-        &.home {
-            grid-column: 2 / 3;
-            grid-row: 3 / 4;
-            justify-self: center;
-            align-self: center;
-        }
+  .item {
+    &.rec {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      justify-self: start;
     }
+    &.time {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+      justify-self: end;
+    }
+    &.camera {
+      grid-column: 1 / 4;
+      grid-row: 1 / 4;
+      z-index: -1;
+      background: #000;
+      overflow: hidden;
+
+      canvas {
+        display: none;
+      }
+      video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateY(180deg);
+      }
+    }
+    &.home {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+      justify-self: center;
+      align-self: center;
+    }
+    &.preview {
+      grid-column: 3 / 4;
+      grid-row: 3 / 4;
+      justify-self: end;
+      align-self: center;
+      padding-right: 8px;
+    }
+  }
 }
 
 .home-button {
-    border-radius: 50%;
-    border: 3px solid #fff;
-    width: 40px;
-    height: 40px;
-    display: block;
+  border-radius: 50%;
+  border: 20px solid #fff;
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: #ff6666;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    &:active {
-        background: #ff0000;
-    }
+  &:active,
+  &.active {
+    background: #ff0000;
+  }
 }
 
-.hour-text {
-    color: #fff;
-    font-size: 12px;
-    margin: 0 6px;
-    font-weight: bold;
+.time-text {
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: bold;
+}
+
+.preview-gif {
+  width: 40px;
+}
+
+.preview-loader.active {
+  display: inline-block;
+  color: white;
+  vertical-align: middle;
+  pointer-events: none;
+
+  .loader {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: currentcolor;
+      left: 50%;
+      right: 0;
+      top: 0;
+      bottom: 50%;
+      box-shadow: -16px 0 0 currentcolor;
+      animation: loader 1s linear infinite;
+    }
+    &:after {
+      top: 50%;
+      bottom: 0;
+      animation-delay: 0.25s;
+    }
+  }
+
+  @keyframes loader {
+    0%,
+    100% {
+      box-shadow: -16px 0 0 transparent;
+      background-color: currentcolor;
+    }
+    50% {
+      box-shadow: -16px 0 0 currentcolor;
+      background-color: transparent;
+    }
+  }
+}
+
+.rec-text {
+  display: none;
+  background: #ff0000;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 3px;
+  padding: 1px 8px;
+  border-radius: 2px;
+  &.active {
+    display: inline-block;
+  }
 }

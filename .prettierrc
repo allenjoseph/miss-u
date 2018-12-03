@@ -1,0 +1,8 @@
+{
+  "overrides": [
+    {
+      "files": ".babelrc, .prettierrc",
+      "options": { "parser": "json" }
+    }
+  ]
+}
