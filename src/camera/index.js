@@ -1,13 +1,24 @@
 import Record from '../record/record';
 
 function getVideoStream() {
+  const hdWidth = 1280;
+  const hdHeight = 720;
+  const hdConstraints = {
+    width: { min: hdWidth },
+    height: { min: hdHeight }
+  };
   return navigator.mediaDevices.getUserMedia({
-    video: true,
+    video: hdConstraints,
     audio: false
   });
 }
 
 export async function startVideo($video) {
+  if (Record.isMobile()) {
+    const $device = document.getElementById('device');
+    $device.style.width = document.documentElement.clientWidth + 'px';
+    $device.style.height = document.documentElement.clientHeight + 'px';
+  }
   // eslint-disable-next-line no-param-reassign
   $video.srcObject = await getVideoStream();
   $video.play();

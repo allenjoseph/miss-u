@@ -70,10 +70,13 @@ export default class Record extends EventEmitter {
   getSourceCoords() {
     const videoWidth = this.$el.videoWidth;
     const videoHeight = this.$el.videoHeight;
+    let width = 360;
+    let height = 568;
 
-    const videoContainer = this.$el.parentNode;
-    const width = videoContainer.offsetWidth; // 320
-    const height = videoContainer.offsetHeight; // 568
+    if (Record.isMobile()) {
+      width = document.documentElement.clientWidth;
+      height = document.documentElement.clientHeight;
+    }
 
     return {
       sx: videoWidth > width ? (videoWidth - width) / 2 : 0,
@@ -92,5 +95,10 @@ export default class Record extends EventEmitter {
     context.translate(this.coords.sw, 0); // move the canvas over to compensate for the flip
     context.scale(-1, 1); // flip horizontal
     return { context };
+  }
+
+  static isMobile() {
+    const devices = /(iPhone|iPod|Android|BlackBerry)/;
+    return devices.test(navigator.userAgent);
   }
 }
