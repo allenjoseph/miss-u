@@ -1,7 +1,8 @@
 {
+  "singleQuote": true,
   "overrides": [
     {
-      "files": ".babelrc, .prettierrc",
+      "files": ".babelrc, .prettierrc, .eslintrc",
       "options": { "parser": "json" }
     }
   ]
