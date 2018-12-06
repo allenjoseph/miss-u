@@ -1,4 +1,24 @@
-import gifWriter from "../dependencies/gifWriter";
+import GifWriter from '../dependencies/gifWriter';
+
+function bufferToString(buffer) {
+  const numberValues = buffer.length;
+  let str = '';
+  let x = -1;
+  // eslint-disable-next-line wrap-iife
+  const byteMap = (function setup() {
+    const arr = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 256; i++) {
+      arr[i] = String.fromCharCode(i);
+    }
+    return arr;
+  })();
+  // eslint-disable-next-line no-plusplus
+  while (++x < numberValues) {
+    str += byteMap[buffer[x]];
+  }
+  return str;
+}
 
 export default function generateGif(frames) {
   const buffer = [];
@@ -8,7 +28,7 @@ export default function generateGif(frames) {
     loop: 0
   };
 
-  const gw = new gifWriter(buffer, width, height, gifOptions);
+  const gw = new GifWriter(buffer, width, height, gifOptions);
 
   frames.sort((a, b) => a.position - b.position);
   frames.forEach(frame => {
@@ -20,22 +40,5 @@ export default function generateGif(frames) {
 
   gw.end();
 
-  return "data:image/gif;base64," + btoa(bufferToString(buffer));
-}
-
-function bufferToString(buffer) {
-  const numberValues = buffer.length;
-  let str = "";
-  let x = -1;
-  const byteMap = (function() {
-    const byteMap = [];
-    for (let i = 0; i < 256; i++) {
-      byteMap[i] = String.fromCharCode(i);
-    }
-    return byteMap;
-  })();
-  while (++x < numberValues) {
-    str += byteMap[buffer[x]];
-  }
-  return str;
+  return 'data:image/gif;base64,' + btoa(bufferToString(buffer));
 }
