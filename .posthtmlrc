@@ -1,0 +1,32 @@
+{
+  "plugins": {
+    "posthtml-favicons": {
+      "configuration": {
+        "path": "/",
+        "appName": "miss-u",
+        "appDescription": "Miss U",
+        "developerName": "Allen Joseph",
+        "developerURL": null,
+        "dir": "auto",
+        "lang": "en-US",
+        "background": "#fff",
+        "theme_color": "#fff",
+        "display": "standalone",
+        "orientation": "portrait",
+        "start_url": "index.html",
+        "version": "1.0",
+        "logging": false,
+        "icons": {
+          "android": true,
+          "appleIcon": true,
+          "appleStartup": true,
+          "coast": false,
+          "favicons": true,
+          "firefox": false,
+          "windows": true,
+          "yandex": false
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 /* eslint-disable no-plusplus */
 import NeuQuant from '../dependencies/NeuQuant';
 
-function workerCode() {
+function workerCode(NewQ) {
   var self = this;
   var workerMethods = {
     dataToRGB: function dataToRGB(data, width, height) {
@@ -39,13 +39,7 @@ function workerCode() {
       sampleInterval
     ) {
       var rgbComponents = this.dataToRGB(imageData, width, height);
-      // eslint-disable-next-line no-eval
-      var Newquant = eval('NeuQuant');
-      var nq = new Newquant(
-        rgbComponents,
-        rgbComponents.length,
-        sampleInterval
-      );
+      var nq = new NewQ(rgbComponents, rgbComponents.length, sampleInterval);
       var paletteRGB = nq.process();
       var paletteArray = new Uint32Array(
         this.componentizedPaletteToArray(paletteRGB)
@@ -114,7 +108,7 @@ export default class QuantizeWorker {
       return this.idle.pop();
     }
 
-    const content = NeuQuant.toString() + '(' + workerCode.toString() + '());';
+    const content = `${NeuQuant.toString()}(${workerCode.toString()}(${NeuQuant.toString()}));`;
     const blob = new Blob([content], { type: 'text/javascript' });
     const objectURL = URL.createObjectURL(blob);
 
