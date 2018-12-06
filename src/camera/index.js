@@ -39,16 +39,18 @@ export function startRecord($video, $button) {
     $loader.classList.add('active');
 
     $gif.innerHTML = '';
+    $gif.href = '#';
     $rec.classList.remove('active');
     $button.classList.remove('active');
   });
 
   record$.on('done', data => {
     const img = new Image();
-    img.className = 'preview-gif';
+    img.className = 'preview-img';
     img.src = data;
     img.onload = () => $loader.classList.remove('active');
 
+    $gif.href = data;
     $gif.appendChild(img);
   });
 }

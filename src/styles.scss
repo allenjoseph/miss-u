@@ -96,10 +96,9 @@ body {
   text-shadow: 1px 1px 5px #333;
 }
 
-.preview-gif {
-  width: 40px;
-  cursor: pointer;
+.preview-img {
   animation: bounce 2s infinite;
+  width: 40px;
 }
 
 .preview-loader.active {

@@ -4,9 +4,11 @@
   "description": "gift animations using webcam",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.html --no-cache",
-    "start": "parcel src/index.html"
+    "build": "npm run clean && npm run build:prod",
+    "build:prod": "parcel build src/index.html --no-cache",
+    "start": "npm run clean && npm run start:dev",
+    "start:dev": "parcel src/index.html",
+    "clean": "rimraf dist"
   },
   "author": "Allen Joseph",
   "license": "ISC",
@@ -18,6 +20,7 @@
     "eslint-plugin-import": "^2.14.0",
     "parcel-bundler": "^1.10.3",
     "posthtml-favicons": "^1.2.0",
+    "rimraf": "^2.6.2",
     "sass": "^1.15.1"
   },
   "dependencies": {
