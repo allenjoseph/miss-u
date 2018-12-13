@@ -1,11 +1,10 @@
 import Record from '../record/record';
+import 'webrtc-adapter';
 
 function getVideoStream() {
-  const hdWidth = 1280;
-  const hdHeight = 720;
   const hdConstraints = {
-    width: { min: hdWidth },
-    height: { min: hdHeight }
+    width: { exact: 1280 },
+    height: { exact: 720 }
   };
   return navigator.mediaDevices.getUserMedia({
     video: hdConstraints,
@@ -21,7 +20,6 @@ export async function startVideo($video) {
   }
   // eslint-disable-next-line no-param-reassign
   $video.srcObject = await getVideoStream();
-  $video.play();
 }
 
 export function startRecord($video, $button) {

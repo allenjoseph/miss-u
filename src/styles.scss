@@ -31,6 +31,7 @@ body {
   grid-template-rows: 80px auto 80px;
 
   .item {
+    z-index: 1;
     &.rec {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
@@ -44,15 +45,14 @@ body {
     &.camera {
       grid-column: 1 / 4;
       grid-row: 1 / 4;
-      z-index: -1;
       background: #000;
       overflow: hidden;
-
       video {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotateY(180deg);
+        z-index: -1;
       }
     }
     &.home {
@@ -116,12 +116,12 @@ body {
       content: '';
       display: block;
       position: absolute;
-      background-color: currentcolor;
+      background-color: white;
       left: 50%;
       right: 0;
       top: 0;
       bottom: 50%;
-      box-shadow: -16px 0 0 currentcolor;
+      box-shadow: -16px 0 0 white;
       animation: loader 1s linear infinite;
     }
     &:after {
@@ -150,10 +150,10 @@ body {
   0%,
   100% {
     box-shadow: -16px 0 0 transparent;
-    background-color: currentcolor;
+    background-color: white;
   }
   50% {
-    box-shadow: -16px 0 0 currentcolor;
+    box-shadow: -16px 0 0 white;
     background-color: transparent;
   }
 }

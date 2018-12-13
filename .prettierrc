@@ -2,7 +2,7 @@
   "singleQuote": true,
   "overrides": [
     {
-      "files": ".babelrc, .prettierrc, .eslintrc, .posthtmlrc",
+      "files": ".babelrc, .prettierrc, .eslintrc, .posthtmlrc, .postcssrc",
       "options": { "parser": "json" }
     }
   ]
